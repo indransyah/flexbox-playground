@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <style>
+    #result {
+      background-color: rgb(102, 102, 102);
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-items: stretch;
+      align-content: stretch;
+      height: 500px;
+    }
+
+    .item {
+      width: 10%;
+      background-color: rgb(210, 210, 210);
+      margin: 10px;
+    }
+  </style>
+
+  <title>Flexbox Playground</title>
+</head>
+
+<body>
+  <h1 class="text-center">Flexbox Playground</h1>
+  <section class="container-fluid">
+    <div class="row">
+      <div class="col-md">
+        <h5>Settings</h5>
+        <form>
+          <div class="form-group">
+            <label for="itemWidth">Item width :
+              <span id="width">50%</span>
+            </label>
+            <input type="range" class="form-control-range" id="itemWidth">
+          </div>
+
+          <div class="row">
+            <div class="col-md">
+              <div class="form-group">
+                <label for="itemWidth">flex-direction</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexDirection" id="flexDirectionRow" value="row">
+                  <label class="form-check-label" for="flexDirectionRow">
+                    row
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexDirection" id="flexDirectionRowReverse" value="row-reverse" checked>
+                  <label class="form-check-label" for="flexDirectionRowReverse">
+                    row-reverse
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexDirection" id="flexDirectionColumn" value="column">
+                  <label class="form-check-label" for="flexDirectionColumn">
+                    column
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexDirection" id="flexDirectionColumnReverse" value="column-reverse">
+                  <label class="form-check-label" for="flexDirectionColumnReverse">
+                    column-reverse
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md">
+              <div class="form-group">
+                <label for="itemWidth">flex-wrap</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexWrap" id="flexWrapNoWrap" value="nowrap" checked>
+                  <label class="form-check-label" for="flexWrapNoWrap">
+                    nowrap
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexWrap" id="flexWrapWrap" value="wrap">
+                  <label class="form-check-label" for="flexWrapWrap">
+                    wrap
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexWrap" id="flexWrapWrapReverse" value="wrap-reverse">
+                  <label class="form-check-label" for="flexWrapWrapReverse">
+                    wrap-reverse
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md">
+              <div class="form-group">
+                <label for="itemWidth">justify-content</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="justifyContent" id="justifyContentFlexStart" value="flex-start" checked>
+                  <label class="form-check-label" for="justifyContentFlexStart">
+                    flex-start
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="justifyContent" id="justifyContentFlexEnd" value="flex-end">
+                  <label class="form-check-label" for="justifyContentFlexEnd">
+                    flex-end
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="justifyContent" id="justifyContentFlexCenter" value="center">
+                  <label class="form-check-label" for="justifyContentFlexCenter">
+                    center
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="justifyContent" id="justifyContentSpaceBetween" value="space-between">
+                  <label class="form-check-label" for="justifyContentSpaceBetween">
+                    space-between
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="justifyContent" id="justifyContentSpaceAround" value="space-around">
+                  <label class="form-check-label" for="justifyContentSpaceAround">
+                    space-around
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md">
+              <div class="form-group">
+                <label for="itemWidth">align-items</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="alignItems" id="alignItemsStretch" value="stretch" checked>
+                  <label class="form-check-label" for="alignItemsStretch">
+                    stretch
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="alignItems" id="alignItemsFlexStart" value="flex-start">
+                  <label class="form-check-label" for="alignItemsFlexStart">
+                    flex-start
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="alignItems" id="alignItemsFlexEnd" value="flex-end">
+                  <label class="form-check-label" for="alignItemsFlexEnd">
+                    flex-end
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="alignItems" id="alignItemsCenter" value="center">
+                  <label class="form-check-label" for="alignItemsCenter">
+                    center
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="alignItems" id="alignItemsBaseline" value="baseline">
+                  <label class="form-check-label" for="alignItemsBaseline">
+                    baseline
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md">
+              <div class="form-group">
+                <label for="itemWidth">align-content</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="alignContent" id="alignContentStretch" value="stretch" checked>
+                  <label class="form-check-label" for="alignContentStretch">
+                    stretch
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="alignContent" id="alignContentFlexStart" value="flex-start">
+                  <label class="form-check-label" for="alignContentFlexStart">
+                    flex-start
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="alignContent" id="alignContentFlexEnd" value="flex-end">
+                  <label class="form-check-label" for="alignContentFlexEnd">
+                    flex-end
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="alignContent" id="alignContentCenter" value="center">
+                  <label class="form-check-label" for="alignContentCenter">
+                    center
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="alignContent" id="alignContentSpaceBetween" value="space-between">
+                  <label class="form-check-label" for="alignContentSpaceBetween">
+                    space-between
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="alignContent" id="alignContentSpaceAround" value="space-around">
+                  <label class="form-check-label" for="alignContentSpaceAround">
+                    space-around
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="col-md">
+        <h5>Result</h5>
+        <div id="result" class="row">
+          <span class="item text-center">
+            Item
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelector('input[type="range"]').onchange = changeRangeEventHandler;
+      document.querySelectorAll('input[type="radio"]').forEach(function (e) {
+        e.onchange = changeRadioEventHandler;
+      });
+    })
+
+    function changeRangeEventHandler(e) {
+      document.getElementById('width').innerText = this.value + '%';
+    }
+
+    function changeRadioEventHandler(e) {
+      const result = document.getElementById('result');
+      result.style[camelCaseToDash(this.name)] = this.value;
+    }
+
+    function camelCaseToDash(camelString) {
+      return camelString.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+    }
+  </script>
+</body>
+
+</html>
