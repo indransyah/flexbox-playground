@@ -40,9 +40,9 @@
         <form>
           <div class="form-group">
             <label for="itemWidth">Item width :
-              <span id="width">50%</span>
+              <span id="width"></span>
             </label>
-            <input type="range" class="form-control-range" id="itemWidth">
+            <input type="range" class="form-control-range" id="itemWidth" value="10">
           </div>
 
           <div class="row">
@@ -50,13 +50,13 @@
               <div class="form-group">
                 <label for="itemWidth">flex-direction</label>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="flexDirection" id="flexDirectionRow" value="row">
+                  <input class="form-check-input" type="radio" name="flexDirection" id="flexDirectionRow" value="row" checked>
                   <label class="form-check-label" for="flexDirectionRow">
                     row
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="flexDirection" id="flexDirectionRowReverse" value="row-reverse" checked>
+                  <input class="form-check-input" type="radio" name="flexDirection" id="flexDirectionRowReverse" value="row-reverse">
                   <label class="form-check-label" for="flexDirectionRowReverse">
                     row-reverse
                   </label>
@@ -229,19 +229,35 @@
   </section>
 
   <script>
+    const inputWidth = document.querySelector('input[type="range"]');
+    const inputFlexStyles = document.querySelectorAll('input[type="radio"]');
+
+    const result = document.getElementById('result');
+    const widthInfo = document.getElementById('width');
+
+    const items = document.querySelectorAll('.item');
+
     document.addEventListener('DOMContentLoaded', function () {
-      document.querySelector('input[type="range"]').onchange = changeRangeEventHandler;
-      document.querySelectorAll('input[type="radio"]').forEach(function (e) {
+      inputWidth.onchange = changeRangeEventHandler;
+      inputFlexStyles.forEach(function (e) {
         e.onchange = changeRadioEventHandler;
       });
+      widthInfo.innerText = inputWidth.value + '%';
+      const formNames = ['flexDirection', 'flexWrap', 'justifyContent', 'alignItems', 'alignContent'];
+      for (formName of formNames) {
+        result.style[camelCaseToDash(formName)] = document.querySelector('input[name="' + formName + '"]').value;
+      }
     })
 
     function changeRangeEventHandler(e) {
-      document.getElementById('width').innerText = this.value + '%';
+      const width = this.value;
+      widthInfo.innerText = width + '%';
+      items.forEach(function (e) {
+        e.style.width = (document.querySelector('#result').clientWidth / 100 * width) + 'px';
+      })
     }
 
     function changeRadioEventHandler(e) {
-      const result = document.getElementById('result');
       result.style[camelCaseToDash(this.name)] = this.value;
     }
 
